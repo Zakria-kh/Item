@@ -1,0 +1,54 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/tailwind.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/ionicons.min.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Item Catalog Viewer </title>
+</head>
+<body class="bg-white flex flex-col font-lato">
+<nav class="flex items-center justify-between  p-3 h-20 border-b-1 w-full shadow mb-10">
+    <div class="">
+        <a class="font-thin text-xl tracking-tide text-Orange-darker hover:text-Orange-darkest no-underline"
+           href="{{ url_for('index') }}">
+            <span class="hidden sm:inline">Udacity Item Catalog</span>
+        </a>
+    </div>
+
+    <div class="flex justify-between w-auto">
+        {% if current_user.is_authenticated %}
+        <span class="hidden md:flex items-center px-2 leading-tight text-Orange-darker no-underline text-sm">
+            Welcome back, {{ current_user.name.split()[0].upper() }}!
+        </span>
+        <a class="flex items-center px-3 border rounded hover:shadow border-Orange-light hover:border-Orange focus:shadow-inner text-Orange-dark hover:text-Orange-darker no-underline text-xl"
+           href="{{ url_for('logout') }}" title="Logout">
+            <i class="ion-ios-log-out"></i>
+        </a>
+        {% else %}
+        <a href="{{ url_for('login_with', provider_name='google') }}"
+           class="flex items-center px-2 leading-tight font-thin border rounded hover:shadow border-Orange hover:border-Orange focus:shadow-inner text-Orange-darker hover:text-Orange-darkest no-underline text-sm">
+            <i class="ion-logo-google text-lg"></i><span>&nbsp;&nbsp;sign in</span>
+        </a>
+        {% endif %}
+
+    </div>
+</nav>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div class="flex flex-col px-0 sm:px-4 md:px-8 lg:px-16 xl:px-32">
+    <div class="px-3 mb-10 text-white pb-4">
+        <ul class="list-reset rounded bg-Orange-light p-5">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endif %}
+{% endwith %}
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

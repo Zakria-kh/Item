@@ -59,7 +59,7 @@ credentials and user date locally.
 
 1.  Clone this repo:
 
-\$ git clone https://github.com/Zakria-kh/item_catalog.git
+\$ git clone https://github.com/Zakria-kh/Item.git
 
 1.  Configure Google sign-in by opening config/passport.py, change the
     consumer_key & consumer_secret. ( if you don’t have one just create it
